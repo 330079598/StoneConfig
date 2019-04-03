@@ -25,6 +25,9 @@ set hlsearch
 set incsearch           " 开启实时搜索功能
 set ignorecase          " 搜索时大小写不敏感
 set autowrite           " 设置自动保存
+set viminfo='1000,<500  "最主要的是输入<500,它是设置寄存器保存的行数的。即最大值为 500"
+
+
 
 
 call plug#begin('~/.vim/plugged')
