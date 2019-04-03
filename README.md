@@ -181,6 +181,11 @@
 ---
 
 ----
+- 终端字体
+![](Image/终端字体.png)
+
+----
+---
 
 - 插件及其设置由来：[vimplus](https://github.com/chxuan/vimplus)
 
