@@ -26,6 +26,14 @@ set incsearch           " 开启实时搜索功能
 set ignorecase          " 搜索时大小写不敏感
 set autowrite           " 设置自动保存
 set viminfo='1000,<500  "最主要的是输入<500,它是设置寄存器保存的行数的。即最大值为 500"
+set nobackup            " 设置不备份
+set noswapfile          " 禁止生成临时文件
+set autoread            " 文件在vim之外修改过，自动重新读入
+"set autowrite           " 设置自动保存
+"set confirm             " 在处理未保存或只读文件的时候，弹出确认
+set wildmenu             " vim自身命名行模式智能补全
+set completeopt-=preview " 补全时不显示窗口，只显示补全列表
+set ttimeoutlen=0        " 设置<ESC>键响应时间
 
 
 call plug#begin('~/.vim/plugged')
@@ -48,8 +56,21 @@ Plug 'junegunn/gv.vim'    " 显示git提交记录
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " NerdTree文件类型高亮
 Plug 'skywind3000/asyncrun.vim'  " 一键运行
 Plug 'dracula/vim', { 'as': 'dracula' }    " 主题插件
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
 call plug#end()
 
+" markdown
+let g:mkdp_path_to_chrome = "/usr/bin/chromium"
+
+
+nmap <silent> <F7> <Plug>MarkdownPreview
+imap <silent> <F7> <Plug>MarkdownPreview
+nmap <silent> <F8> <Plug>StopMarkdownPreview
+imap <silent> <F8> <Plug>StopMarkdownPreview
+ let g:mkdp_refresh_slow = 0
+    " 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时
+    " 更新预览
 
 
 
@@ -132,41 +153,6 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 
-" YCM
-let g:ycm_confirm_extra_conf = 0 
-let g:ycm_seed_identifiers_with_syntax = 1 
-let g:ycm_complete_in_comments = 1 
-let g:ycm_complete_in_strings = 1 
-"let g:ycm_server_python_interpreter = '/usr/bin/python'
-"let g:ycm_python_binary_path = 'python'
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_key_invoke_completion = '<c-z>'
-set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口pumvisible() 
-"let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗列匹配项  
-let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全 
-"在注释输入中也能补全  
-let g:ycm_complete_in_comments = 1  
-"在字符串输入中也能补全  
-let g:ycm_complete_in_strings = 1  
-"注释和字符串中的文字也会被收入补全  
-let g:ycm_collect_identifiers_from_comments_and_strings = 0  
-let g:clang_user_options='|| exit 0'  
-let g:ycm_min_num_identifier_candidate_chars = 2
-
-
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
-let g:ycm_filetype_whitelist = { 
-			\ "c":1,
-			\ "cpp":1, 
-			\ "objc":1,
-			\ "sh":1,
-			\ "zsh":1,
-			\ "zimbu":1,
-			\ }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickly Run
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
