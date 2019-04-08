@@ -20,7 +20,7 @@ set relativenumber       " 开启相对行号
 set laststatus=2
 " 显示光标当前位置
 set ruler
-" 高亮显示搜索结果
+" 高亮显示搜索结果    可以输入:nohl或者:noh取消下一次打开搜索的高亮
 set hlsearch
 set incsearch           " 开启实时搜索功能
 set ignorecase          " 搜索时大小写不敏感
