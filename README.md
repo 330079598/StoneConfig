@@ -1,4 +1,3 @@
-- 
 - 这个是没有开tree的界面
 
 ![](Image/初始页面1.png)
@@ -21,7 +20,19 @@
 
 ---
 
+- ycm配置
+  - 进入`~/.vim/plugged/YouCompleteMe`
+  - 执行`./install.py --clang-completer`
 
+- 关闭ycm的语法自动检测
+
+  - 打开`/.vim/plugged/YouCompleteMe/plugin`下的youcompleteme.vim文件
+
+  ![](Image/ycm语法提示.png)
+
+----
+
+----
 
 - 全部复制的方法:
   - 全部删除：按esc键后，先按gg（到达顶部），然后dG 
