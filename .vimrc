@@ -20,7 +20,7 @@ set relativenumber       " 开启相对行号
 set laststatus=2
 " 显示光标当前位置
 set ruler
-" 高亮显示搜索结果    可以输入:nohl或者:noh取消下一次打开搜索的高亮
+" 高亮显示搜索结果
 set hlsearch
 set incsearch           " 开启实时搜索功能
 set ignorecase          " 搜索时大小写不敏感
@@ -58,12 +58,14 @@ Plug 'skywind3000/asyncrun.vim'  " 一键运行
 Plug 'dracula/vim', { 'as':'dracula' }    " 主题插件
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'luochen1990/rainbow'
 call plug#end()
 
 " markdown
 let g:mkdp_path_to_chrome = "/usr/bin/chromium"
-
-
+imap <c-l> <right>
+imap <c-h> <left>
 nmap <silent> <F7> <Plug>MarkdownPreview
 imap <silent> <F7> <Plug>MarkdownPreview
 nmap <silent> <F8> <Plug>StopMarkdownPreview
@@ -176,7 +178,7 @@ func! CompileRunGcc()
 "
 
 " 自动打开 quickfix window ，高度为 6
-let g:asyncrun_open = 6
+let g:asyncrun_open = 10
 
 " 任务结束时候响铃提醒
 let g:asyncrun_bell = 1
@@ -204,7 +206,7 @@ let g:ycm_filetype_whitelist = {
 			\ "zsh":1,
 			\ "zimbu":1,
 			\ }
-
+"let g:syntastic_error_symbol = 0
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
@@ -215,3 +217,33 @@ let g:ycm_key_invoke_completion = '<c-z>'
 set completeopt=menu,menuone
 
 noremap <c-z> <NOP>
+
+set completeopt-=preview   " 让补全行为与一般的IDE一致
+let g:ycm_cache_omnifunc=0 " 在注释中也可以补全
+
+
+
+" Rainbow
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+let g:rainbow_conf = {
+	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+	\	'operators': '_,_',
+	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+	\	'separately': {
+	\		'*': {},
+	\		'tex': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+	\		},
+	\		'lisp': {
+	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+	\		},
+	\		'vim': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+	\		},
+	\		'html': {
+	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+	\		},
+	\		'css': 0,
+	\	}
+	\}
