@@ -201,3 +201,11 @@
 - 插件及其设置由来：[vimplus](https://github.com/chxuan/vimplus)
 
 - vim主题：[draculatheme](https://draculatheme.com/)
+
+- 最后,如果发现在vim中有乱码的话,请安装下面字体就可以了!
+
+```txt
+
+字体:Droid Sans Mono Nerd Font
+
+```
