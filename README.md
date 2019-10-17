@@ -207,5 +207,6 @@
 ```txt
 
 字体:Droid Sans Mono Nerd Font
+yay nerd-fonts-droid-sans-mono 
 
 ```
