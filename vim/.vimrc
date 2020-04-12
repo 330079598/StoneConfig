@@ -1,7 +1,5 @@
 " Author:stone 330079598@qq.com
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -110,7 +108,6 @@ Plug 'ryanoasis/vim-devicons'                            " 显示文件类型图
 Plug 'Yggdroot/indentLine'                               " 代码缩进线
 Plug 'scrooloose/nerdtree'                               " NerdTree
 Plug 'Xuyuanp/nerdtree-git-plugin'                       " NerdTree显示git状态
-Plug 'vim-airline/vim-airline'                           " 状态栏美化插件
 Plug 'junegunn/gv.vim'                                   " 显示git提交记录
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'           " NerdTree文件类型高亮
 Plug 'jistr/vim-nerdtree-tabs'
@@ -297,7 +294,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 
 "                 2
-color dracula
+"color dracula
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -336,3 +333,10 @@ endfunction
 " To use echodoc, you must increase 'cmdheight' value.
 set cmdheight=2
 let g:echodoc_enable_at_startup = 1
+
+
+
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+"hi Normal  ctermfg=252 ctermbg=none   " 设置vim使用终端背景
