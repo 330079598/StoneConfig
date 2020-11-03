@@ -52,8 +52,8 @@ set completeopt-=preview " 补全时不显示窗口，只显示补全列表
 set hlsearch            " 高亮显示搜索结果
 set incsearch           " 开启实时搜索功能
 set ignorecase          " 搜索时大小写不敏感
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nnoremap <esc> :noh<return><esc>  " 清除上次的搜索高亮结果
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 缓存设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nobackup            " 设置不备份
@@ -95,7 +95,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "插件列表
 call plug#begin('~/.vim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}          " coc
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}          " coc
 Plug 'w0rp/ale'                                          " 检查语法错误
 Plug 'vim-airline/vim-airline'                           " 状态栏美化插件
 Plug 'vim-airline/vim-airline-themes'
@@ -119,7 +119,13 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/echodoc.vim'
-"Plug 'taigacute/spaceline.vim'
+Plug 'preservim/nerdcommenter'                          "注释插件
+Plug 'hzchirs/vim-material'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh'  }      "搜索插件
+Plug 'Chiel92/vim-autoformat'                           "代码格式化
+Plug 'whatyouhide/vim-gotham'                           "主题插件
+Plug 'bling/vim-bufferline'
+
 if has('nvim')
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -180,11 +186,12 @@ let g:NERDTreeHighlightFoldersFullName = 1
 let g:NERDTreeDirArrowExpandable='▸'
 let g:NERDTreeDirArrowCollapsible='▾'
 let NERDTreeIgnore = ['\~$','\.pyc$','\*NTUSER*','\*ntuser*','\NTUSER.DAT','\ntuser.ini']
+let g:NERDTreeGitStatusShowIgnored = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdtree-git-plugin
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -199,7 +206,9 @@ let g:NERDTreeIndicatorMapCustom = {
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline
-let g:airline_theme="onedark"
+"let g:airline_theme="moloai"
+let g:airline_theme='simple'
+"let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
@@ -209,13 +218,7 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" gv这个再看看，不懂
-nnoremap <leader>g :GV<cr>
-nnoremap <leader>G :GV!<cr>
-nnoremap <leader>gg :GV?<cr>
+set laststatus=2  "永远显示状态栏
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 分屏窗口移动
@@ -286,15 +289,17 @@ let g:rainbow_conf = {
 " 重新打开vim后,光标定位到上一次的地方
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim主题配置      1            抱歉,我的只可以手动选择,哈哈哈!
-"colorscheme gruvbox
-"set background=dark    " Setting dark mode
+colorscheme gruvbox
+set background=dark    " Setting dark mode
 
 
 "                 2
 "color dracula
+"                 3
+"colorscheme gotham
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -334,9 +339,14 @@ endfunction
 set cmdheight=2
 let g:echodoc_enable_at_startup = 1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LeaderF
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+set ambiwidth=double
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline"  }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 
-
-colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
-"hi Normal  ctermfg=252 ctermbg=none   " 设置vim使用终端背景
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indentLine_char_list = ['┊']
