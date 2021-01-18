@@ -32,12 +32,14 @@
 - 配置插件：
 
   ````shell
-在～/。zshrc中添加如下的插件名称：
+在～/.zshrc中添加如下的插件名称：
   plugins=(
-git 
-  git-open
-autosuggest-accept
-  zsh-syntax-highlighting
+   git
+     z
+   zsh-syntax-highlighting
+     zsh-autosuggestions
+     git-open
+     colored-man-pages
   )
   
   可以增加配置如下配置：

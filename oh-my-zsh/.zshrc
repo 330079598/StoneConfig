@@ -122,5 +122,10 @@ HIST_STAMPS="yyyy-mm-dd"
 alias go="git-open"
 alias rm="trash"
 alias cp="cp -i"
+alias ls="colorls"
+alias ll="colorls -l"
+alias xmind='cd /home/stone/Software/xmind/XMind_amd64/XMind ;nohup XMind>log&;cd -'
 bindkey ',' autosuggest-accept
 . /home/stone/Software/z.sh
+
+# export PATH=$PATH:/home/stone/.gem/ruby/2.7.0/bin
