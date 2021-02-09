@@ -90,6 +90,8 @@ Plug 'whatyouhide/vim-gotham'
 
 Plug 'bling/vim-bufferline'
 
+Plug 'NLKNguyen/papercolor-theme'
+
 if has('nvim')
     Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else

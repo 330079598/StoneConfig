@@ -241,17 +241,27 @@ endif
 
 
 "----------------------------------------------------------------------
-" 颜色主题：色彩文件位于 colors 目录中
+" 颜色主题：色彩文件位于 colors 目录中 theme
 "----------------------------------------------------------------------
 
 " 设置黑色背景
-"set background=dark
+set background=dark
 
 " 允许 256 色
 set t_Co=256
 
-" 设置颜色主题，会在所有 runtimepaths 的 colors 目录寻找同名配置
-"color desert256
+" papercolor-theme
+colorscheme PaperColor
+
+" dracula
+"colorscheme dracula
+
+" gruvbox
+"colorscheme gruvbox
+
+" sublime
+"colorscheme sublime
+
 
 "----------------------------------------------------------------------
 " 状态栏设置
