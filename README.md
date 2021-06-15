@@ -21,6 +21,7 @@ source ~/.vim/vim/init.vim
 ## tmux
 
 我是根据[.tmux](https://github.com/gpakosz/.tmux/tree/master)这个开源项目进行改进的,具体改动如下:[文档地址](https://github.com/330079598/StoneConfig/blob/master/tmux/.tmux/README.md)
+
 ---
 
 ## todo
