@@ -10,7 +10,7 @@ source ~/.vim/vim/init.vim
 
 - 启动vim,运行`:PlugInstall` 安装插件
 
-> 每次你修改或者调试了单个 .vim 配置文件后，命令行输入 `:so %` 即可重新载入，so 是 `source` 的简写，意思是加载脚本，`%` 代表当前正在编辑脚本的名字。
+每次你修改或者调试了单个 .vim 配置文件后，命令行输入 `:so %` 即可重新载入，so 是 `source` 的简写，意思是加载脚本，`%` 代表当前正在编辑脚本的名字。
 
 ---
 ## Oh-my-zsh
@@ -20,7 +20,7 @@ source ~/.vim/vim/init.vim
 ---
 ## tmux
 
-我是根据[.tmux](https://github.com/gpakosz/.tmux/tree/master)这个开源项目进行改进的,具体改动如下:[文档地址](https://github.com/gpakosz/.tmux/tree/master/tmux/.tmux/README.md)
+我是根据[.tmux](https://github.com/gpakosz/.tmux/tree/master)这个开源项目进行改进的,具体改动如下:[文档地址](https://github.com/330079598/StoneConfig/blob/master/tmux/.tmux/README.md)
 ---
 
 ## todo
