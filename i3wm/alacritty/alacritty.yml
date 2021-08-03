@@ -1,0 +1,69 @@
+# 默认窗口无标题栏，16:9的窗口比例启动
+window:
+#     - full: Borders and title bar
+#     - none: Neither borders nor title bar
+    decorations: full
+    dimensions:
+      columns: 120
+      lines: 30
+    dynamic_title: true
+
+scrolling:
+    history: 50000
+    muliplier: 3
+
+
+
+
+# 背景半透明，方便抄代码
+background_opacity: 1
+
+# 实时重载配置文件，不用重启测试配置选项
+live_config_reload: true
+
+# Space Duck
+colors:
+  # Default colors
+  primary:
+    background: '#0f111b'
+    foreground: '#ecf0c1'
+  # Normal colors
+  normal:
+    black:   '#000000'
+    red:     '#e33400'
+    green:   '#5ccc96'
+    yellow:  '#b3a1e6'
+    blue:    '#00a3cc'
+    magenta: '#f2ce00'
+    cyan:    '#7a5ccc'
+    white:   '#686f9a'
+
+  # Bright colors
+  bright:
+    black:   '#686f9a'
+    red:     '#e33400'
+    green:   '#5ccc96'
+    yellow:  '#b3a1e6'
+    blue:    '#00a3cc'
+    magenta: '#f2ce00'
+    cyan:    '#7a5ccc'
+    white:   '#f0f1ce'
+
+# 字体设置为等宽字体，可以用命令 fc-list 查看你系统的字体
+font:
+  size: 13
+
+  normal:
+    family: JetBrainsMono Nerd Font
+    style: Bold
+
+  bold:
+    family: JetBrainsMono Nerd Font
+
+  italic:
+    family: JetBrainsMono Nerd Font
+
+# 每个字符的字体间距. "offset.y" 控制行距, "offset.x"改变字符间距
+offset:
+    x: 1
+    y: 0
