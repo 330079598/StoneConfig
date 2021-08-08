@@ -1,692 +1,244 @@
+;==========================================================
 ;
-; this config is written for an unreleased version (polybar "wip-lemonbar" 
-; branch), it might need some tweaking to run on the latest released 
-; version... try for yourself
 ;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;==========================================================
 
-[global/wm]
-; Adjust the _NET_WM_STRUT_PARTIAL top value
-;   Used for top aligned bars
-margin-bottom = 0
+[colors]
+background = #11121D
+foreground = #A0A8CD
+content-background = #2b2f37
+blue = #7199EE
+cyan = #38A89D
+green =  #A0E8A2
+orange = #d19a66
+red =  #e06c75
+yellow = #D4B261
+purple = #d3869b
+light-gray = #565c64
+black = #1d2021
+aqua = #8ec07c
 
-; Adjust the _NET_WM_STRUT_PARTIAL bottom value
-;   Used for bottom aligned bars
-margin-top = 0
-
-[bar/top]
-; monitor = eDP-1
-; background = #D03d3c3b
-background = #DF343332
-foreground = #b6a49b
-width = 100%
-height = 27
-#offset-x = 0
-#offset-y = 10
-fixed-centered = true
-
-#background = #ee1d1d1d
-#foreground = #ccfafafa
-linecolor = #b0a090
-
-separator = "|"
-separator-font = 7
-
-;;; tray settings{{{
+[bar/bar]
 tray-position = right
-tray-maxsize = 20
-tray-detached = false
-; tray-transparent = false
-tray-padding = 2
-tray-scale = 1.0
-;;;}}}
-
-# float bar
-#override-redirect = true
-
-# @change: use "border-top-size" instead of "border-top" since 3.3.1
-# 2019-07-14 23:18
-
-radius = 3
-line-size = 3
-;border-color = #ee2d2d2d
-border-top-size = 5
-;border-top-color = #ccfafafa
-border-left-size = 10
-;border-left-color = #00ff00
-border-bottom-size = 0
-;border-bottom-color = #ccfafafa
-border-right-size = 10
-;border-right-color = #00f
-
-spacing = 1
-lineheight = 2
+tray-padding = 5
+tray-backgroud = ${colors.background}
+width =  100%
+height = 18
 padding-left = 0
 padding-right = 0
-module-margin-left = 1
-module-margin-right = 1
+background = ${colors.background}
+foreground = ${colors.foreground}
+bottom = false
+border-top-size = 5
+border-bottom-size = 5
+border-top-color = ${colors.background}
+border-bottom-color = ${colors.background}
+line-size = 2
+wm-restack = i3
+modules-left = round-left i3 round-right
+modules-center = round-left time round-right
+modules-right =  battery backlight alsa temperature cpu mem  wlan powermenu
+font-0 = Hack Nerd Font:style=Bold:pixelsize=12;3
+font-1 = JetBrainsMono Nerd Font:size=12;3
+font-2 = Material Design Icons:style=Bold:size=12;3
+font-3 = unifont:fontformat=truetype:size=12:antialias=true;
+font-4 = siji:pixelsize=8;1
+font-5 = Font Awesome 5 Free:pixelsize=12;2
+font-6 = Font Awesome 5 Free Solid:pixelsize=12;2
+font-7 = Font Awesome 5 Brands:pixelsize=12;2
 
-; font-0 = ypn envypn:size=10;0
-font-2 = Monaco:size=12;0
-font-1 = FontAwesome:size=12;0
-font-3 = WenQuanYi Mirco Hei:size=12;-1
-font-4 = Google Sans:size=12;0
-font-5 = Source Code Pro for Powerline:size=12;0
-font-6 = DejaVu Serif Condensed:size=12;0
-font-7 = Spectral:size=12;0
-font-8 = Cantarell:size=12;0
-font-9 = SF Pro Display:size=12;0
-font-0 = DejaVu Sans Mono:style=Bold:size=12;0
+[module/round-left]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = ${colors.content-background}
 
-;modules-left = rofi i3 mpd menu
-modules-center = memory cpu
-modules-right = wlan backlight volume battery date 
+[module/round-right]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = ${colors.content-background}
 
+[module/temperature]
+type = internal/temperature
+ramp-0 = "󰜗"
+thermal-zone = 0
+warn-temperature = 70
+format = <ramp><label>
+format-warn = <ramp><label-warn>
+label = %temperature-c%
+label-warn = %temperature-c%
+ramp-foreground = ${colors.blue}
+format-padding = 3
 
-[bar/external_bottom]
-; monitor = HDMI-2
-bottom = true
-width = 100%
-height = ${bar/top.height}
-offset-x = 0
-offset-y = 10
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
 
-background = ${bar/top.background}
-foreground = ${bar/top.foreground}
-linecolor = ${bar/top.linecolor}
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
 
-border-top-size = 2
-border-top-color = #ee2d2d2d
+ws-icon-0 = 1;1.
+ws-icon-1 = 2;2.
+ws-icon-2 = 3;3.
+ws-icon-3 = 4;4.
+ws-icon-4 = 5;5.
+ws-icon-5 = 6;6.
 
-spacing = ${bar/top.spacing}
-lineheight = ${bar/top.lineheight}
-padding-right = ${bar/top.padding-right}
-module-margin-left = ${bar/top.module-margin-left}
-module-margin-right = ${bar/top.module-margin-right}
+label-mode-padding = 2
+label-mode-foreground = ${colors.light-gray}
+label-mode-background = ${colors.light-gray}
 
-font-0 = ${bar/top.font-0}
-font-1 = ${bar/top.font-1}
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.yellow}
+label-focused-underline= ${colors.purple}
+label-focused-padding = 2
 
-modules-left = i3
-modules-right = wlan memory cpu date
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 2
 
-;[bar/bar]
-;background = #D93d3c3b
-;foreground = #b6a49b
-;width                    = 24%
-;height                   = 70
-;radius                   = 15
-;line-size                = 0
-;bottom                   = true
-;border-bottom-size       = 0
-;padding-left             = 0
-;padding-right            = 0
-;#module-margin-left       = 1
-;#module-margin-right      = 1
-;
-;fixed-center = true
-;font-0 = Monaco:size=24;1
-;font-1 = unifont:fontformat=truetype:size=24:antialias=false;0
-;font-2 = "MaterialIcons:size=24:antialias=false;1"
-;font-3 = "icomoon-extended-ultra:size=24:antialias=false;1"
-;font-4 = "Ubuntu Nerd Font:size=24:antialias=false;1"
-;font-5 = FontAwesome:size=24;1
-;
-;modules-left = 
-;modules-center =
-;modules-right = date volume wlan poweroff 
-;module-margin = 2
-;
-;;left - center - right - none
-;tray-position = none
-;tray-maxsize = 24
-;tray-detached = false
-;tray-transparent = false
-;tray-padding = 2
-;tray-scale = 1.0
-;
-;
-;override-redirect = true
-;offset-x = 2900
-;offset-y = 20
-;
-;padding = 0
-;
-;wm-name = bar
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 
+; Separator in between workspaces
+; label-separator = |
 
-[module/date]
-type = internal/date
-interval = 60
-date = %Y-%m-%d
-time = %H:%M
-date-alt = %a %d %b
-;time-alt = %l:%M %p
-time-alt = %Y-%m-%d
-;label =  %date%   %time%
-; use font-4 for time date
-;label-font = 6
-label = %time%
-label-foreground = #3399ff
-;label-font = 3
-;label-background = #DF3f3f3f
-label-underline = #3399ff
-label-padding = 1
-format-padding = 0
-
-[module/volume]
+[module/alsa]
 type = internal/alsa
 format-volume = <ramp-volume> <label-volume>
-format-muted = 0% 
+format-muted = <label-muted>
+label-volume = %percentage%%
+label-muted = " "
+label-volume-foreground = ${colors.foreground}
+format-muted-foreground = ${colors.foreground}
+format-muted-padding = 3
+format-muted-background = ${colors.content-background}
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
+ramp-volume-foreground = ${colors.cyan}
+ramp-headphones-0 = 
+ramp-headphones-foreground = ${colors.cyan}
+format-padding = 3
 
-[module/poweroff]
-type = custom/script
-exec = echo " "
-click-left = rofi -modi run,drun,window -show drun
-click-right = i3lock-fancy -pg &
-click-middle = /usr/bin/rofi-logout
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <ramp-volume> <label-volume>
+format-muted = <label-muted>
+label-volume = %percentage%%
+label-muted = " "
+label-volume-foreground = ${colors.foreground}
+format-muted-foreground = ${colors.foreground}
+format-muted-padding = 3
+format-muted-background = ${colors.content-background}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.cyan}
+ramp-headphones-0 = 
+ramp-headphones-foreground = ${colors.cyan}
+format-padding = 3
+
+[module/time]
+type = internal/date
+interval = 60
+format = <label>
+format-background = ${colors.content-background}
+date = %{F#888e96}󰥔 %H:%M%{F-}
+time-alt = %{F#7199EE}󰃭 %a, %b %d%{F-}
+label = %date%%time%
 format-padding = 1
 
-[module/rofi]
+[module/mem]
 type = custom/script
-exec = echo " "
-click-left = rofi -modi run,drun,window -show drun
-click-right = slock
-;format-padding = 1
+exec = printf "%.1f\n" $(echo $(free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p')/1024 | bc -l)
+format = <label>
+format-prefix = "  "
+label = "%output%GB"
+format-prefix-foreground = ${colors.orange}
+format-padding = 3
+
+[module/cpu]
+type = internal/cpu
+interval = 2.5
+format = <label>
+format-prefix = " "
+label = "%percentage:02%%"
+format-prefix-foreground = ${colors.purple}
+format-padding = 0
+
+[module/powermenu]
+type = custom/text
+content =""
+content-padding = 1
+click-left = bspc quit &
+content-foreground =  ${colors.red}
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
-interval = 3.0
+interface = wlp5s0
+interval = 10.0
 format-connected = <label-connected>
-format-connected-prefix = " "
-format-connected-prefix-foreground = #b6a49b
-label-connected = %upspeed:5% %downspeed:5%
-format-disconnected = <label-disconnected>
-label-disconnected = not connected
-label-disconnected-foreground = #66ffffff
-format-padding = 0
-
-;;; CPU usage {{{
-[module/cpu]
-type = internal/cpu
-
-; Seconds to sleep between updates
-; Default: 1
-interval = 3.0
-; Available tags:
-;   <label> (default)
-;   <bar-load>
-;   <ramp-load>
-;   <ramp-coreload>
-format = <label><ramp-load>
-
-; Available tokens:
-;   %percentage% (default) - total cpu load averaged over all cores
-;   %percentage-sum% - Cumulative load on all cores
-;   %percentage-cores% - load percentage for each core
-;   %percentage-core[1-9]% - load percentage for specific core
-label = CPU %percentage%%
-;label-font = 3
-
-; Spacing between individual per-core ramps
-ramp-coreload-spacing = 1
-ramp-coreload-0 = ▁
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-5 = ▆
-ramp-coreload-6 = ▇
-ramp-coreload-7 = █
-
-; ramps for ramp-load
-ramp-load-0 = ▁
-ramp-load-1 = ▂
-ramp-load-2 = ▃
-ramp-load-3 = ▄
-ramp-load-4 = ▅
-ramp-load-5 = ▆
-ramp-load-6 = ▇
-ramp-load-7 = █
-; colors for each ramp
-ramp-load-0-foreground = #aaff77
-ramp-load-1-foreground = #aaff77
-ramp-load-2-foreground = #aaff77
-ramp-load-3-foreground = #aaff77
-ramp-load-4-foreground = #fba922
-ramp-load-5-foreground = #fba922
-ramp-load-6-foreground = #ff5555
-ramp-load-7-foreground = #ff5555
-
-[module/cpu-bar]
-type = internal/cpu
-interval = 3.0
-format = <label> <bar-load>
-label = %percentage%%
-format-prefix = "CPU "
-
-bar-load-width = 8
-bar-load-foreground-0 = #c1cb7f
-bar-load-foreground-1 = #d9c37f
-bar-load-foreground-2 = #e4a48a
-bar-load-foreground-3 = #ed9896
-bar-load-indicator = ■
-bar-load-indicator-font = 0
-bar-load-indicator-foreground = #55fdf6e3
-bar-load-fill = ■
-bar-load-fill-font = 0
-bar-load-empty = □
-bar-load-empty-font = 0
-bar-load-empty-foreground = #99586e75
-
-
-[module/cpu-square]
-type = internal/cpu
-interval = 3.0
-
-format = <label>  <ramp-coreload>
-;label = %percentage-cores% - %percentage%%
-label = %percentage%%
-;label-font = 3
-
-ramp-coreload-0 = ▁
-ramp-coreload-0-foreground = #aaff77
-ramp-coreload-1 = ▂
-ramp-coreload-1-foreground = #aaff77
-ramp-coreload-2 = ▃
-ramp-coreload-2-foreground = #aaff77
-ramp-coreload-3 = ▄
-ramp-coreload-3-foreground = #aaff77
-ramp-coreload-4 = ▅
-ramp-coreload-4-foreground = #fba922
-ramp-coreload-5 = ▆
-ramp-coreload-5-foreground = #fba922
-ramp-coreload-6 = ▇
-ramp-coreload-6-foreground = #ff5555
-ramp-coreload-7 = █
-ramp-coreload-7-foreground = #ff5555
-;;; }}}
-
-
-;;; memory usage {{{
-[module/mem]
-type = internal/memory
-;label = RAM %mb_used%/%mb_free% %gb_used%/%gb_free%
-label = RAM: %gb_used%/%gb_free%
-
-[module/mem2]
-type = internal/memory
-format = <label> <bar-used>
-label = RAM %percentage_used%% %percentage_free%%
-
-bar-used-width = 10
-bar-used-foreground-2 = #0000ff
-bar-used-foreground-3 = #00ff00
-bar-used-foreground-0 = #ff0000
-bar-used-indicator = |
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
-bar-used-fill-font = 2
-bar-used-empty = ─
-bar-used-empty-font = 2
-bar-used-empty-foreground = #444444
-
-[module/memory]
-type = internal/memory
-
-; Seconds to sleep between updates
-; Default: 1
-interval = 3.0
-; Available tags:
-;   <label> (default)
-;   <bar-used>
-;   <bar-free>
-;   <ramp-used>
-;   <ramp-free>
-;   <bar-swap-used>
-;   <bar-swap-free>
-;   <ramp-swap-used>
-;   <ramp-swap-free>
-format = <label><ramp-used>
-
-; Available tokens:
-;   %percentage_used% (default)
-;   %percentage_free%
-;   %gb_used%
-;   %gb_free%
-;   %gb_total%
-;   %mb_used%
-;   %mb_free%
-;   %mb_total%
-;   %percentage_swap_used%
-;   %percentage_swap_free%
-;   %mb_swap_total%
-;   %mb_swap_free%
-;   %mb_swap_used%
-;   %gb_swap_total%
-;   %gb_swap_free%
-;   %gb_swap_used%
-
-label = RAM %percentage_used%%
-;label-font = 3
-
-; Only applies if <bar-used> is used
-bar-used-indicator =
-bar-used-width = 50
-bar-used-foreground-0 = #55aa55
-bar-used-foreground-1 = #557755
-bar-used-foreground-2 = #f5a70a
-bar-used-foreground-3 = #ff5555
-bar-used-fill = ▐
-bar-used-empty = ▐
-bar-used-empty-foreground = #444444
-
-; Only applies if <ramp-used> is used
-ramp-used-0 = ▁
-ramp-used-1 = ▂
-ramp-used-2 = ▃
-ramp-used-3 = ▄
-ramp-used-4 = ▅
-ramp-used-5 = ▆
-ramp-used-6 = ▇
-ramp-used-7 = █
-ramp-used-0-foreground = #aaff77
-ramp-used-1-foreground = #aaff77
-ramp-used-2-foreground = #aaff77
-ramp-used-3-foreground = #aaff77
-ramp-used-4-foreground = #fba922
-ramp-used-5-foreground = #fba922
-ramp-used-6-foreground = #ff5555
-ramp-used-7-foreground = #ff5555
-
-; Only applies if <ramp-free> is used
-ramp-free-0 = ▁
-ramp-free-1 = ▂
-ramp-free-2 = ▃
-ramp-free-3 = ▄
-ramp-free-4 = ▅
-ramp-free-5 = ▆
-ramp-free-6 = ▇
-ramp-free-7 = █
-;;; }}}
-
-[module/backlight]
-type = internal/backlight
-
-; Use the following command to list available cards:
-; $ ls -1 /sys/class/backlight/
-card = intel_backlight
-; Available tags:
-;   <label> (default)
-;   <ramp>
-;   <bar>
-format = <label>
-format-prefix = " "
-
-; Available tokens:
-;   %percentage% (default)
-label = %percentage%
-
-; Only applies if <ramp> is used
-ramp-0 = 🌕
-ramp-1 = 🌔
-ramp-2 = 🌓
-ramp-3 = 🌒
-ramp-4 = 🌑
-
-; Only applies if <bar> is used
-bar-width = 10
-bar-indicator = |
-bar-fill = ─
-bar-empty = ─
+label-connected = "󰤪 "
+label-connected-foreground = ${colors.green}
+format-padding = 1
 
 [module/battery]
 type = internal/battery
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
+battery = BAT0
+adapter = ADP1
+full-at = 100
+poll-interval = 6
+format-charging = <ramp-capacity> <label-charging>
+label-charging = %percentage:2%%
+format-charging-padding = 3
+format-charging-foreground = ${colors.foreground}
 format-discharging = <ramp-capacity> <label-discharging>
-format-full = %{F#666}%{F#ccfafafa} <label-full>
-#label-charging-font = 3
-#label-discharing-font = 3
+label-discharging = %percentage%%
+format-discharging-foreground = ${colors.foreground}
+format-full-prefix = "  "
+format-full-prefix-foreground = ${colors.green}
+format-foreground = ${colors.foreground}
+format-background = ${colors.content-background}
+label-discharging-foreground = ${colors.foreground}
+ramp-capacity-foreground =  ${colors.green}
+label-charging-foreground = ${colors.foreground}
+ramp-capacity-0 = "  "
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
+ramp-capacity-3 = "  "
+ramp-capacity-4 = "  "
+animation-charging-0 = "  "
+animation-charging-1 = "  "
+animation-charging-2 = "  "
+animation-charging-3 = "  "
+animation-charging-4 = "  "
+animation-charging-foreground = ${colors.red}
+animation-charging-framerate = 910
+format-discharging-padding = 3
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-;ramp-capacity-foreground = #666
-; low power alert
-ramp-capacity-0-foreground = #ff5555
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-;animation-charging-0-foreground = #aaff77
-;animation-charging-1-foreground = #aaff77
-;animation-charging-2-foreground = #aaff77
-animation-charging-2-foreground = #aaff77
-;animation-charging-4-foreground = #fba922
-animation-charging-1-foreground = #fba922
-;animation-charging-6-foreground = #ff5555
-animation-charging-0-foreground = #ff5555
-;animation-charging-foreground = #666
-animation-charging-framerate = 750
-
-;[module/mpd]
-;type = internal/mpd
-;
-;; format-online = <label-song>  <label-time>  <bar-progress>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
-;format-online = <toggle> <label-song> <icon-next>
-;format-offline = <label-offline>
-;format-offline-foreground = #66
-;label-offline = mpd is off
-;
-;label-song-maxlen = 20
-;label-song-font = 8
-;
-;icon-prev = 
-;icon-seekb = 
-;icon-stop = stop
-;icon-play = 
-;icon-pause = 
-;icon-next = 
-;icon-seekf = 
-;
-;icon-random = 
-;icon-repeat = 
-;
-;toggle-on-foreground = #2278ff
-;toggle-off-foreground = #66
-;
-;bar-progress-width = 15
-;bar-progress-indicator = 
-;bar-progress-indicator-foreground = #bb
-;bar-progress-fill = ─
-;bar-progress-fill-foreground = #bb
-;bar-progress-fill-font = 3
-;bar-progress-empty = ─
-;bar-progress-empty-foreground = #44
-;bar-progress-empty-font = 3
-;
-;label-time-foreground = #55
-;label-time-font = 8
-;
-[module/i3]
-type = internal/i3
-
-; ws-icon-[0-9]+ = label;icon
-; NOTE: The label needs to match the name of the i3 workspace
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-default = 
-; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
-; you must also define a ws-icon-5.
-
-; Available tags:
-;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
-;   <label-mode> (default)
-format = <label-state>
-
-; Available tokens:
-;   %mode%
-; Default: %mode%
-label-mode = %mode%
-label-mode-padding = 1
-label-mode-background = #e60053
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-focused = %icon% %name%
-label-focused-foreground = #efdfaf
-label-focused-background = #3f3f3f
-label-focused-underline = #fba922
-label-focused-padding = 1
-label-focused-font = 9
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-unfocused = %index% %name%
-label-unfocused-padding = 1
-label-unfocused-font = 9
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-visible = %index%
-label-visible-underline = #555555
-label-visible-padding = 1
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-urgent = %index%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
-label-urgent-padding = 1
-
-; Separator in between workspaces
-;label-separator = |
-;label-separator-padding = 1
-;label-separator-foreground = #ffb52a
-
-; Only show workspaces defined on the same output as the bar
-;
-; Useful if you want to show monitor specific workspaces
-; on different bars
-;
-; Default: false
-;pin-workspaces = true
-
-; This will split the workspace name on ':'
-; Default: false
-strip-wsnumbers = true
-
-; Sort the workspaces by index instead of the default
-; sorting that groups the workspaces by output
-; Default: false
-index-sort = true
-
-; Create click handler used to focus workspace
-; Default: true
-enable-click = true
-
-; Create scroll handlers used to cycle workspaces
-; Default: true
-enable-scroll = false
-
-; Wrap around when reaching the first/last workspace
-; Default: true
-wrapping-scroll = false
-
-; Set the scroll cycle direction 
-; Default: true
-reverse-scroll = false
-
-; Use fuzzy (partial) matching on labels when assigning 
-; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces 
-; containing 'code' in the label
-; Default: false
-fuzzy-match = true
-
-[module/xwindow]
-type = internal/xwindow
-; format-padding = 50
-; format-background = #88ffffff
-; format-foreground = #000
-label = %title:0:43:...%
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-mount-1 = /home
-;mount-2 = /invalid/mountpoint
-
-;remove-unmounted = true
-
-;fixed-values = true
-;spacing = 4
-
-label-mounted = %mountpoint%: %percentage_used%%
-;label-mounted-font = 3
-
-;label-unmounted = %mountpoint%: not mounted
-;label-unmounted-foreground = #55
-
-enable-ipc = true
-
-[module/menu]
-type = custom/menu
-
-label-open = 
-label-close = 
-label-separator = /
-
-menu-0-0 = Action 1
-menu-0-0-foreground = #fff51f
-menu-0-0-exec = notify-send -u low "action 1"
-menu-0-1 = Sub-menu 1
-menu-0-1-foreground = #fff51f
-menu-0-1-exec = menu-open-1
-menu-0-2 = Sub-menu 2
-menu-0-2-foreground = #fff51f
-menu-0-2-exec = menu-open-2
-
-menu-1-0 = Cancel
-menu-1-0-foreground = #fff51f
-menu-1-0-exec = menu-open-0
-menu-1-1 = Perform action
-menu-1-1-foreground = #fff51f
-menu-1-1-exec = notify-send -u low "sub-menu action"
-
-menu-2-0 = Perform action
-menu-2-0-foreground = #fff51f
-menu-2-0-exec = notify-send -u low "sub-menu action 2"
-menu-2-1 = Cancel
-menu-2-1-foreground = #fff51f
-menu-2-1-exec = menu-open-0
-
-; vim:ft=dosini
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = <label>
+format-prefix = " "
+label = %percentage:2%%
+format-prefix-foreground = ${colors.yellow}

@@ -7,6 +7,8 @@
   - `compton`:设置窗口半透明+毛玻璃(第三方更改的)
   - `dunst`:桌面通知(没有配置)
   - `copyq`:剪切板
+  - `xfce4-power-manager  `:电源管理(好像不装也可以,不知道是不是因为我装了kde的原因)
+  - `Thunar`,`PCManFM`:文件管理器
 
   ---
 
@@ -14,11 +16,21 @@
 
 - Todo
 
-- [ ] `polybar`没有配置完成
+- [x] `polybar`没有配置完成
 
-- [ ] `picom` 混成器
-- [ ] `rofi`
-- [ ] `Alacritty`
+- [x] `picom` 混成器
+
+- [x] `rofi`
+
+- [x] `Alacritty`
+
+[参考](https://github.com/aeghn/prettyi3),不过我已经fork下来了,没做修改,留着备份
+
+- 最终结果:
+
+![](./Img/desktop.jpg)
+
+- 慢慢用着在添加配置吧!!!太难配置了,kde是真的好用,但是最近窗口老是卡死,先过渡到I3WM用一段时间试试!!!
 
 ---
 
@@ -37,4 +49,4 @@
   3. https://github.com/abdheshnayak/dotfiles
   4. https://github.com/66RING/dotfiles
   5. https://github.com/pineapplegiant/spaceduck-terminal
-  6. https://github.com/EvanMeek/dotfiles
+  6. https://github.com/EvanMeek/dotfiles 
