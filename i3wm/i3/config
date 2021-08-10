@@ -120,7 +120,6 @@ assign [class="TelegramDesktop"] $ws3
 assign [class="Typora"] $ws4
 
 for_window [class="fcitx5-config-qt"] floating enable; border none;
-#for_window [class="Zeal"] floating enable
 for_window [class="Zeal"] floating enable resize set 640 480,move right 330px,move down 70px
 
 # reload the configuration file
@@ -202,3 +201,4 @@ exec --no-startup-id qv2ray & # 代理
 exec --no-startup-id redshift-gtk & # 护眼
 exec --no-startup-id blueman-applet & # 蓝牙托盘
 exec --no-startup-id flameshot & # 截图软件
+bindsym --release $mod+p exec --no-startup-id "flameshot gui"
