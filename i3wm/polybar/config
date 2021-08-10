@@ -63,7 +63,7 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0 
 
-modules-left = i3 right mpd
+modules-left = i3 right mpd line title
 modules-center = date 
 modules-right = netspeed memory cpu battery  line xbacklight pulseaudio  headphone line system-bluetooth-bluetoothctl 
 overline-size = 6
@@ -166,23 +166,24 @@ reverse-scroll = false
 ; Default: false
 fuzzy-match = true
 ; ws-icon-[0-9]+ = label;icon
-ws-icon-0 = 1;1
+ws-icon-0 = 1;
 #α
-ws-icon-1 = 2;2
+ws-icon-1 = 2;
 #β
-ws-icon-2 = 3;3
+ws-icon-2 = 3;
 #γ
-ws-icon-3 = 4;4
+ws-icon-3 = 4;
 #δ
-ws-icon-4 = 5;5
+ws-icon-4 = 5;
 #ε
-ws-icon-5 = 6;6
+ws-icon-5 = 6;
 #ζ
-ws-icon-6 = 7;7
+ws-icon-6 = 7;
 #η
 ws-icon-7 = 8;8
 #θ 
-ws-icon-default = ♟
+ws-icon-8 = 9;9
+ws-icon-9 = 10;10
 ; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
 ; you must also define a ws-icon-5.
 ; Available tags:
@@ -274,7 +275,7 @@ label = %date% %time%
 [module/netspeed]
 type = internal/network
 interface = wlp5s0
-interval = 1.0
+interval = 0.8
 format-connected = <label-connected>
 format-connected-padding = ${variables.mpadding}
 format-connected-background=${colors.xbg2}
@@ -382,3 +383,14 @@ format-background=${colors.xbg2}
 interval = 2
 format-prefix = ""
 
+[module/title]
+type = internal/xwindow
+format-prefix = " "
+format = <label>
+format-background = ${colors.xbg2}
+format-foreground = ${colors.xfg}
+format-padding = ${variables.mpadding}
+label = %title%
+label-maxlen = 50
+label-empty = Empty
+label-empty-foreground = ${colors.xfg}

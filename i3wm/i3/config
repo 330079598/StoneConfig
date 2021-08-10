@@ -116,8 +116,8 @@ for_window [urgent=latest] focus
 
 # open app in appoint workspace
 assign [class="Google-chrome"] $ws2
-assign [class="TelegramDesktop"] $ws4
-assign [class="Typora"] $ws3
+assign [class="TelegramDesktop"] $ws3
+assign [class="Typora"] $ws4
 
 for_window [class="fcitx5-config-qt"] floating enable; border none;
 #for_window [class="Zeal"] floating enable
@@ -139,16 +139,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 3 px or 3 ppt
+        bindsym j resize grow height 3 px or 3 ppt
+        bindsym k resize shrink height 3 px or 3 ppt
+        bindsym l resize grow width 3 px or 3 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 3 px or 3 ppt
+        bindsym Down resize grow height 3 px or 3 ppt
+        bindsym Up resize shrink height 3 px or 3 ppt
+        bindsym Right resize grow width 3 px or 3 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -200,3 +200,5 @@ exec --no-startup-id nm-applet & # 网络管理托盘
 exec --no-startup-id picom & # 透明
 exec --no-startup-id qv2ray & # 代理
 exec --no-startup-id redshift-gtk & # 护眼
+exec --no-startup-id blueman-applet & # 蓝牙托盘
+exec --no-startup-id flameshot & # 截图软件

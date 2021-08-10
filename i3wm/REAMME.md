@@ -9,6 +9,11 @@
   - `copyq`:剪切板
   - `xfce4-power-manager  `:电源管理(好像不装也可以,不知道是不是因为我装了kde的原因)
   - `Thunar`,`PCManFM`:文件管理器
+  - `mate-power-manager`:电源管理工具
+  - `blueman-applet`:蓝牙托盘工具
+  - `alsa-utils`:声音管理工具
+  - `qt5ct`:设置qt主题
+  - ` lxappearance`:设置`gtk`主题(好像是…)
 
   ---
 
