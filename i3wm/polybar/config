@@ -54,7 +54,8 @@ wm-restack = i3
 #override-redirect = true
 
 font-0 = "sf pro display:style=regular:size=12;3"
-font-1 = FontAwesome:size=11;3
+font-1 = "FontAwesome:size=12;3"
+#font-1 = "Font Awesome Pro:size=12;3"
 
 fixed-center = true
 spacing = 0
@@ -166,24 +167,16 @@ reverse-scroll = false
 ; Default: false
 fuzzy-match = true
 ; ws-icon-[0-9]+ = label;icon
-ws-icon-0 = 1;
-#α
-ws-icon-1 = 2;
-#β
-ws-icon-2 = 3;
-#γ
-ws-icon-3 = 4;
-#δ
-ws-icon-4 = 5;
-#ε
-ws-icon-5 = 6;
-#ζ
-ws-icon-6 = 7;
-#η
-ws-icon-7 = 8;8
-#θ 
-ws-icon-8 = 9;9
-ws-icon-9 = 10;10
+ws-icon-0 = 1;1--
+ws-icon-1 = 2;2--
+ws-icon-2 = 3;3--
+ws-icon-3 = 4;4--
+ws-icon-4 = 5;5--
+ws-icon-5 = 6;6--
+ws-icon-6 = 7;7--
+ws-icon-7 = 8;8--
+ws-icon-8 = 9;9--
+ws-icon-9 = 10;10--
 ; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
 ; you must also define a ws-icon-5.
 ; Available tags:
@@ -385,7 +378,8 @@ format-prefix = ""
 
 [module/title]
 type = internal/xwindow
-format-prefix = " "
+#format-prefix = " "
+format-prefix = ""
 format = <label>
 format-background = ${colors.xbg2}
 format-foreground = ${colors.xfg}
