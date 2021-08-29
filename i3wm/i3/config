@@ -19,6 +19,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec --no-startup-id alacritty
 
+# 跳转到急需处理的窗口
+bindsym $mod+x [urgent=latest] focus
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -120,7 +123,8 @@ assign [class="TelegramDesktop"] $ws3
 assign [class="Typora"] $ws4
 
 for_window [class="fcitx5-config-qt"] floating enable; border none;
-for_window [class="Zeal"] floating enable resize set 640 480,move right 330px,move down 70px
+for_window [class="Zeal"] floating enable resize set 1024 720
+# ,move right 330px,move down 70px
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -175,12 +179,15 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym ctrl+$mod+0 mode "$mode_system"
-#bindsym Shift+$mod+l exec  i3lock-fancy
+bindsym ctrl+$mod+l exec --no-startup-id i3lock-fancy
 
 
 # Gaps config
 gaps inner 3
-gaps outer 4
+gaps outer 5
+
+
+#popup_during_fullscreen smart
 
 
 # Window Config
@@ -188,17 +195,32 @@ for_window [class="^.*"] border pixel 2
 new_window 1pixel
 for_window [class="^copyq$"] floating enable
 
+# Making Jetbrains loading window float nicely in the center.
+#for_window [class="jetbrains-idea" title="win0"] floating enable;
+for_window [class="jetbrains-.*" title="win0"] floating enable border none
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id autotiling
+exec --no-startup-id xfce4-power-manager & # 电源管理
 exec --no-startup-id fcitx5 & # 中文输入法
-#exec_always --no-startup-id fcitx
 exec --no-startup-id dunst &  # 通知
 exec --no-startup-id copyq &  # 粘贴板
 exec --no-startup-id variety & # 壁纸管理
 exec --no-startup-id nm-applet & # 网络管理托盘
 exec --no-startup-id picom & # 透明
+#exec --no-startup-id compton & # 透明
 exec --no-startup-id qv2ray & # 代理
 exec --no-startup-id redshift-gtk & # 护眼
 exec --no-startup-id blueman-applet & # 蓝牙托盘
 exec --no-startup-id flameshot & # 截图软件
 bindsym --release $mod+p exec --no-startup-id "flameshot gui"
+#exec_always --no-startup-id autotiling
+
+# class                 border  bground text    indicator child_border
+client.focused          #bd93f9 #bd93f9 #F8F8F2 #bd93f9   #bd93f9
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
