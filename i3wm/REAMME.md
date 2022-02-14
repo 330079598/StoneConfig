@@ -12,7 +12,7 @@
   - `mate-power-manager`:电源管理工具
   - `blueman-applet`:蓝牙托盘工具
   - `alsa-utils`:声音管理工具
-  - `qt5ct`:设置qt主题
+  - `qt5ct`:设置qt主题：将` /etc/environment`添加：`export QT_QPA_PLATFORMTHEME="qt5ct"`
   - ` lxappearance`:设置`gtk`主题(好像是…)
 
   ---
